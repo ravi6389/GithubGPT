@@ -83,7 +83,7 @@ GROQ_API_KEY = st.secrets['GROQ_API_KEY']
 llm = ChatGroq(temperature=0.8, groq_api_key=GROQ_API_KEY,
                model_name="llama-3.1-8b-instant", streaming=True)
 
-max_repos = 20
+max_repos = 25
 max_files = 100
 
 # ----------------------------
@@ -277,4 +277,5 @@ if 'docs' in st.session_state:
             answer = answer_with_llm(prompt, st.session_state["user_info"], top)
             st.session_state.messages.append({"role": "assistant", "content": answer})
             st.chat_message("assistant").write(answer)
+
 
