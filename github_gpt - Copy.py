@@ -110,10 +110,19 @@ def fetch_user_and_repos(username: str, max_repos: int = 5):
     user = github_get(user_url).json()
     repos = github_get(repos_url).json()
     return user, repos
-
+  
 def fetch_repo_files(owner: str, repo: str, path: str = ""):
     url = f"{GITHUB_API}/repos/{owner}/{repo}/contents/{path}"
-    return github_get(url).json()
+    files = github_get(url).json()
+    all_files = []
+
+    for f in files:
+        if f["type"] == "file":
+            all_files.append(f)
+        elif f["type"] == "dir":
+            all_files.extend(fetch_repo_files(owner, repo, f["path"]))  # recursive
+    return all_files
+
 
 def fetch_file_content(owner: str, repo: str, path: str) -> str:
     url = f"{GITHUB_API}/repos/{owner}/{repo}/contents/{path}"
@@ -278,6 +287,7 @@ if 'docs' in st.session_state:
             answer = answer_with_llm(prompt, st.session_state["user_info"], top)
             st.session_state.messages.append({"role": "assistant", "content": answer})
             st.chat_message("assistant").write(answer)
+
 
 
 
