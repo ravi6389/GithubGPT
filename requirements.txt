@@ -1,0 +1,10 @@
+protobuf==5.27.2
+langchain
+streamlit
+langchain_community
+pypdf
+langchain_openai
+streamlit-chat
+faiss-cpu
+langchainhub
+sentence_transformers
