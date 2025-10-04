@@ -76,10 +76,10 @@ import streamlit as st
 # ----------------------------
 
 
-GITHUB_TOKEN = st.secrets('GITHUB_TOKEN')
+GITHUB_TOKEN = st.secrets['GITHUB_TOKEN']
 GITHUB_API = "https://api.github.com"
 
-GROQ_API_KEY = st.secrets('GROQ_API_KEY')
+GROQ_API_KEY = st.secrets['GROQ_API_KEY']
 llm = ChatGroq(temperature=0.8, groq_api_key=GROQ_API_KEY,
                model_name="llama-3.1-8b-instant", streaming=True)
 
@@ -277,3 +277,4 @@ if 'docs' in st.session_state:
             answer = answer_with_llm(prompt, st.session_state["user_info"], top)
             st.session_state.messages.append({"role": "assistant", "content": answer})
             st.chat_message("assistant").write(answer)
+
