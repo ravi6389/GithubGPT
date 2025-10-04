@@ -7,4 +7,5 @@ langchain_openai
 streamlit-chat
 faiss-cpu
 langchainhub
+langchain_groq
 sentence_transformers
