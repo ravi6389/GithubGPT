@@ -259,7 +259,7 @@ if st.button("Crawl profile and build index") and username:
 # Repo Explorer (folders/files only, no code shown)
 # ----------------------------
 if "repos" in st.session_state:
-    st.write(st.session_state)
+    # st.write(st.session_state)
     st.subheader("📂 Explore Repositories")
     repo_names = [r["name"] for r in st.session_state["repos"]]
     selected_repo = st.selectbox("Select a repository", repo_names)
@@ -287,6 +287,7 @@ if 'docs' in st.session_state:
             answer = answer_with_llm(prompt, st.session_state["user_info"], top)
             st.session_state.messages.append({"role": "assistant", "content": answer})
             st.chat_message("assistant").write(answer)
+
 
 
 
